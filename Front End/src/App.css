@@ -1,0 +1,323 @@
+.appShell {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(14px, 3vw, 34px);
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(58, 95, 180, 0.35), transparent 46%),
+    radial-gradient(circle at 82% 80%, rgba(5, 130, 168, 0.25), transparent 42%),
+    linear-gradient(165deg, #040814 0%, #071126 52%, #08182f 100%);
+}
+
+.noiseLayer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    radial-gradient(rgba(255, 255, 255, 0.07) 0.7px, transparent 0.7px),
+    radial-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-position: 0 0, 22px 14px;
+  background-size: 22px 22px, 40px 40px;
+}
+
+.appFrame {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(12px, 2.1vw, 24px);
+  animation: fadeUp 480ms ease-out;
+}
+
+.brandRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brandDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(140deg, #2adfff, #53adff);
+  box-shadow: 0 0 12px rgba(51, 195, 255, 0.75);
+}
+
+.brandText {
+  color: #d6e9ff;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 1;
+  font-family: "Rajdhani", "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.statsRow {
+  width: min(420px, 100%);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.statCell {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(8, 17, 32, 0.52);
+  border: 1px solid rgba(146, 173, 210, 0.2);
+}
+
+.statLabel {
+  color: #88a7c7;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.statValue {
+  color: #f2f8ff;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  font-family: "Rajdhani", "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.gaugeStage {
+  width: min(560px, 100%);
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+}
+
+.speedometer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.gaugeSvg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  filter: drop-shadow(0 12px 26px rgba(5, 12, 22, 0.4));
+}
+
+.tickLine {
+  stroke: rgba(145, 170, 205, 0.45);
+  stroke-width: 1.4;
+}
+
+.tickLabel {
+  fill: #8ea9c6;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: "Rajdhani", "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.readout {
+  position: absolute;
+  top: 56%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.readoutMode {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  color: #8fb1d2;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.modeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.readoutValue {
+  color: #f3f8ff;
+  font-size: 82px;
+  line-height: 0.95;
+  font-weight: 600;
+  font-family: "Rajdhani", "Trebuchet MS", "Segoe UI", sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.readoutUnit {
+  margin-top: 4px;
+  color: #7f9bb9;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.goButton {
+  position: absolute;
+  width: clamp(150px, 35vw, 186px);
+  aspect-ratio: 1 / 1;
+  border: 1.8px solid rgba(61, 206, 255, 0.62);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(54, 212, 255, 0.28), rgba(7, 17, 34, 0.9) 70%),
+    rgba(7, 16, 31, 0.98);
+  color: #f5faff;
+  font-size: 52px;
+  font-weight: 600;
+  font-family: "Rajdhani", "Trebuchet MS", "Segoe UI", sans-serif;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 12px rgba(31, 58, 95, 0.25),
+    0 0 44px rgba(43, 203, 255, 0.26);
+  transition: transform 170ms ease, box-shadow 170ms ease, border-color 170ms ease;
+}
+
+.goButton::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 50%;
+  border: 1px solid rgba(73, 203, 255, 0.35);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+.goButton:hover {
+  transform: scale(1.03);
+  border-color: rgba(99, 223, 255, 0.85);
+  box-shadow:
+    0 0 0 12px rgba(31, 58, 95, 0.22),
+    0 0 58px rgba(43, 203, 255, 0.35);
+}
+
+.goButton:active {
+  transform: scale(0.99);
+}
+
+.metricStrip {
+  width: min(560px, 100%);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.metricTile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: rgba(8, 17, 32, 0.55);
+  border: 1px solid rgba(146, 173, 210, 0.18);
+  transition: border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.metricTile.isActive {
+  border-color: rgba(76, 192, 255, 0.7);
+  box-shadow: inset 0 0 0 1px rgba(91, 205, 255, 0.2);
+}
+
+.metricLabel {
+  color: #86a6c6;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.metricValue {
+  color: #f2f8ff;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 600;
+  font-family: "Rajdhani", "Trebuchet MS", "Segoe UI", sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.metricUnit {
+  color: #7393b5;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.045);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .appFrame {
+    gap: 12px;
+  }
+
+  .brandText {
+    font-size: 24px;
+  }
+
+  .statsRow {
+    gap: 8px;
+  }
+
+  .statCell {
+    padding: 8px 10px;
+  }
+
+  .tickLabel {
+    font-size: 12px;
+  }
+
+  .readoutValue {
+    font-size: 56px;
+  }
+
+  .readoutUnit {
+    font-size: 15px;
+  }
+
+  .goButton {
+    font-size: 40px;
+  }
+
+  .metricStrip {
+    gap: 8px;
+  }
+
+  .metricTile {
+    padding: 10px 11px;
+  }
+
+  .metricValue {
+    font-size: 28px;
+  }
+}
